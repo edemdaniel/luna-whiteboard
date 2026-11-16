@@ -1,0 +1,8 @@
+name = "luna-paiement"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# Créez le KV (npx wrangler kv namespace create TX) puis collez son id ici
+[[kv_namespaces]]
+binding = "TX"
+id = "REMPLACER_PAR_L_ID_DU_KV"

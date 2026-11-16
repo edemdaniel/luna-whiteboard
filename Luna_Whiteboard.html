@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Luna Whiteboard : créez des vidéos whiteboard sur Android. 22 000 FCFA, paiement unique, accès à vie, sans abonnement. 20 000 images, 50 musiques, voix off.">
+<meta name="theme-color" content="#0c1a15">
+<title>Luna Whiteboard – Vidéos whiteboard sur Android, sans abonnement</title>
+<style>
+:root{--bg:#fff;--soft:#f4f8f6;--card:#fff;--tx:#0f1f1a;--mut:#53635b;--pri:#059669;--pri2:#047857;--ink:#0c1a15;--gold:#f59e0b;--tint:#e7f5ee;--bd:#e3eae6;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+html{scroll-padding-top:72px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-wrap:break-word;touch-action:manipulation}
+a{color:var(--pri2)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:10px 14px;border-radius:8px;z-index:99}.skip:focus{left:8px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+header{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd);position:sticky;top:env(safe-area-inset-top,0px);z-index:9}
+.top{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.4px;color:var(--tx);text-decoration:none}
+.logo i{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#10b981,#065f46);display:grid;place-items:center;color:#fff;font-style:normal}
+nav{display:flex;gap:4px;align-items:center}
+nav a{color:var(--mut);font-weight:600;font-size:15px;text-decoration:none;padding:10px 12px;border-radius:999px;min-height:44px;display:inline-flex;align-items:center}
+nav a:hover{background:var(--soft)}
+.nl{display:none}
+.btn{position:relative;overflow:hidden;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-height:58px;background:linear-gradient(180deg,#059669,#047857);color:#fff;text-decoration:none;border:0;border-radius:16px;padding:13px 34px;font-family:inherit;cursor:pointer;box-shadow:0 12px 26px rgba(4,120,87,.32),inset 0 1px 0 rgba(255,255,255,.3);transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn b{font-size:18.5px;letter-spacing:-.2px;line-height:1.25}.btn small{font-size:13px;font-weight:600;opacity:.95;font-variant-numeric:tabular-nums}
+.btn.alt{background:#fff;color:var(--pri2);box-shadow:none;border:2px solid var(--pri);min-height:50px}
+.hero{text-align:center;padding:30px 0 8px;background:radial-gradient(#d9e6df 1px,transparent 1px) 0 0/24px 24px}
+.pill{display:inline-flex;gap:8px;align-items:center;background:var(--card);border:1px solid var(--bd);box-shadow:0 4px 14px rgba(15,31,26,.06);font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px}
+h1{font-size:clamp(29px,8.2vw,58px);line-height:1.08;letter-spacing:-1.2px;margin:18px auto 14px;max-width:820px}
+h1 span{color:var(--pri2)}
+.sub{color:var(--mut);font-size:clamp(16px,4.2vw,20px);max-width:620px;margin:0 auto 24px}
+.frame{max-width:780px;margin:0 auto;background:var(--ink);border-radius:20px;padding:8px;box-shadow:0 26px 56px rgba(12,26,21,.2)}
+.video{aspect-ratio:16/9;border-radius:13px;overflow:hidden;background:#0c1a15;position:relative}
+.video iframe,.fac{position:absolute;inset:0;width:100%;height:100%;border:0}
+.fac{background:linear-gradient(135deg,#065f46,#0c1a15);color:#fff;font:inherit;cursor:pointer;display:grid;place-content:center;justify-items:center;gap:10px;padding:14px}
+.play{width:64px;height:64px;border-radius:50%;background:#fff;color:var(--pri2);display:grid;place-items:center;font-size:24px;padding-left:4px}
+.ft{font-weight:700;font-size:15px}
+.ph{display:grid;place-items:center;height:100%;background:#fff;border-radius:13px}
+.ph svg{width:100%;height:100%}
+.hnote{color:#c6d4ce;font-size:13px;padding:8px 6px 2px}
+.cta{text-align:center;margin:26px 0 4px}.cta .btn{width:100%;max-width:440px}
+.note{color:var(--mut);font-size:13.5px;margin-top:12px}
+.proof{display:flex;justify-content:center;gap:8px 18px;flex-wrap:wrap;margin-top:12px;font-size:14px;font-weight:600}
+.proof span::before{content:"✓";display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--tint);color:var(--pri2);font-size:12px;margin-right:6px}
+.band1{background:var(--ink);color:#fff;margin:40px 0 0;padding:30px 0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:20px 12px;text-align:center}
+.st b{display:block;font-size:clamp(28px,7.5vw,44px);letter-spacing:-1px;color:var(--gold);line-height:1.1}.st span{color:#c3d1ca;font-size:14px}
+h2{font-size:clamp(25px,6.4vw,40px);letter-spacing:-1px;line-height:1.15;text-align:center;margin:0 0 12px}
+.eyebrow{display:block;text-align:center;color:var(--pri2);font-weight:800;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.lead{text-align:center;color:var(--mut);max-width:580px;margin:0 auto 26px;font-size:16.5px}
+.lead:empty{display:none}
+section.s{padding:50px 0 4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+.f{background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:22px}
+.ic{width:52px;height:52px;border-radius:16px;background:var(--tint);display:grid;place-items:center;font-size:26px}
+.f h3{margin:14px 0 6px;font-size:18px;letter-spacing:-.3px;line-height:1.3}.f p{margin:0;color:var(--mut);font-size:15.5px}
+.calc{background:var(--ink);color:#fff;border-radius:26px;padding:28px 18px;max-width:640px;margin:0 auto;text-align:center}
+.calc h2{color:#fff;font-size:clamp(22px,5.8vw,30px)}.calc label{display:block;color:#c6d4ce;margin-bottom:12px}
+.calc input{width:100%;max-width:320px;text-align:center;font-weight:700;font-size:20px;font-family:inherit;border-radius:14px;min-height:56px;background:#fff;color:var(--ink);border:0;padding:0 14px}
+.res{margin-top:16px}.rr{display:flex;justify-content:space-between;gap:12px;padding:10px 4px;border-top:1px solid rgba(255,255,255,.14);text-align:left;font-size:15px}.rr b{color:var(--gold);font-variant-numeric:tabular-nums;text-align:right}
+.cnote{color:#b3c3bb;font-size:13px;margin:12px 0 0}
+.steps .f{background:var(--soft);border:0;text-align:center}.num{width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--gold);font-weight:800;font-size:20px;display:grid;place-items:center;margin:0 auto 12px}
+.steps img,.demo img{width:100%;height:auto;border-radius:14px;margin-top:14px;border:1px solid var(--bd)}
+.aud{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:720px;margin:0 auto}
+.aud div{background:var(--tint);border-radius:18px;padding:16px 10px;text-align:center;font-weight:700;color:var(--pri2);font-size:15px}.aud i{display:block;font-style:normal;font-size:28px;margin-bottom:4px}
+.offer{max-width:680px;margin:0 auto;border:2px solid var(--pri);border-radius:26px;overflow:hidden;background:var(--card)}
+.oh{background:var(--ink);color:#fff;padding:26px 20px;text-align:center}.oh small{color:#c6d4ce}.oh .pr{font-size:clamp(30px,8vw,44px);font-weight:800;color:var(--gold);letter-spacing:-1px;line-height:1.2}
+.ob{padding:22px 20px}.ob h3{margin:0 0 10px;font-size:16px}
+.ck{list-style:none;margin:0 0 18px;padding:0}.ck li{padding:6px 0 6px 30px;position:relative}.ck li::before{content:"✓";position:absolute;left:0;top:7px;width:21px;height:21px;border-radius:50%;background:var(--tint);color:var(--pri2);font-size:12px;display:grid;place-items:center}
+.kv{display:grid;grid-template-columns:1fr;border-top:1px solid var(--bd)}.kv div{padding:12px 0;border-bottom:1px solid var(--bd);display:grid;gap:2px}.kv span{color:var(--mut);font-size:13.5px;font-weight:600}.kv b{font-weight:600}
+.tbd{color:var(--mut);font-style:italic;font-weight:400}
+.oc{padding:0 20px 24px;text-align:center}.oc .btn{width:100%;max-width:420px}
+.tbl{max-width:740px;margin:0 auto;border:1px solid var(--bd);border-radius:22px;overflow:hidden}
+.tr{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-top:1px solid var(--bd);font-size:15px}.tr:first-child{border:0;font-weight:800;background:var(--soft)}
+.tr>div{padding:14px}.tr>div:nth-child(2){background:var(--tint);color:var(--pri2);font-weight:700}.tr>div:nth-child(3){color:var(--mut)}
+.tr:first-child>div:nth-child(2){background:var(--pri);color:#fff}
+.tq p{color:var(--tx);font-size:16.5px;font-weight:500}.tq b{display:block;margin-top:12px}.tq span{color:var(--mut);font-size:14px}.tq img{width:48px;height:48px;border-radius:50%;object-fit:cover;margin-top:12px}
+details{border:1px solid var(--bd);border-radius:16px;margin:10px auto;max-width:740px;background:var(--card)}
+summary{font-weight:700;cursor:pointer;font-size:16px;padding:16px 20px;min-height:56px;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center}
+summary::-webkit-details-marker{display:none}summary::after{content:"+";font-size:24px;color:var(--pri2);font-weight:400;flex:none}details[open] summary::after{content:"–"}
+details p{color:var(--mut);margin:0;padding:0 20px 18px}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}.trust .f{padding:18px}.trust h3{margin:0 0 4px;font-size:15px}.trust p{font-size:14.5px}
+.final{background:var(--ink);color:#fff;border-radius:28px;padding:44px 20px;text-align:center;margin:46px 0}
+.final h2{color:#fff}.final p{color:#c6d4ce;margin:0 auto 22px;max-width:480px}.final .btn{width:100%;max-width:440px}
+footer{text-align:center;color:var(--mut);font-size:13.5px;padding:22px 18px 24px;border-top:1px solid var(--bd)}footer nav{justify-content:center;flex-wrap:wrap}
+.sticky{display:none}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);opacity:0;pointer-events:none;background:var(--ink);color:#fff;padding:13px 18px;border-radius:14px;font-size:15px;max-width:calc(100% - 32px);z-index:20;transition:.25s;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.tabs{display:flex;gap:2px;background:var(--soft);border-radius:999px;padding:3px}
+.tab{border:0;background:none;color:var(--mut);font-weight:600;font-size:14px;font-family:inherit;line-height:1;min-height:40px;padding:0 11px;border-radius:999px;cursor:pointer}
+.tab.on{background:var(--ink);color:#fff}
+.acct{position:relative}
+.ab{position:relative;width:44px;height:44px;border-radius:50%;border:1px solid var(--bd);background:#fff;display:grid;place-items:center;cursor:pointer;color:var(--mut);padding:0}
+.ab svg{width:22px;height:22px}
+.ab.in{color:var(--pri2);border-color:var(--pri);background:var(--tint)}
+.dot{position:absolute;right:-1px;bottom:-1px;width:15px;height:15px;border-radius:50%;background:#9aa8a1;border:2px solid #fff;display:grid;place-items:center;font-style:normal;font-size:9px;color:#fff;font-weight:800}
+.ab.in .dot{background:var(--pri)}.ab.in .dot::after{content:"✓"}
+.pop{position:absolute;right:0;top:52px;width:min(270px,calc(100vw - 36px));background:#fff;border:1px solid var(--bd);border-radius:16px;box-shadow:0 20px 44px rgba(15,31,26,.18);padding:14px;font-size:14.5px;z-index:12}
+.pop p{margin:0 0 10px}.pop p:last-child{margin:0}.pop .btn{min-height:46px;width:100%;padding:8px 14px;font-size:15px}
+.lnote{font-size:13px;color:var(--mut);background:var(--soft);border-radius:12px;padding:10px 12px;margin:0 0 6px}
+.cm{display:flex;gap:9px;margin:14px 0}.cm.r{margin-left:6px}
+.av{flex:none;width:36px;height:36px;border-radius:50%;color:#fff;font-weight:700;display:grid;place-items:center}.cm.r .av{width:28px;height:28px;font-size:12px}
+.bub{background:#f1f5f3;border-radius:16px;padding:8px 12px;display:inline-block;max-width:100%}
+.bub b{display:block;font-size:14px}.bub .u{color:var(--mut);font-size:12px;font-weight:400}.bub .tx{font-size:15px;white-space:pre-wrap}
+.act{display:flex;flex-wrap:wrap;gap:2px 14px;font-size:13px;color:var(--mut);font-weight:700;padding:2px 8px;align-items:center}
+.act button{border:0;background:none;color:inherit;font:inherit;cursor:pointer;min-height:36px;padding:0 2px}.act button.on{color:var(--pri2)}
+.composer{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--bd);padding:10px 0 calc(10px + env(safe-area-inset-bottom,0px));margin-top:18px}
+.composer input{width:100%;border:1px solid var(--bd);background:#f1f5f3;color:var(--tx);border-radius:22px;padding:0 14px;min-height:44px;font:inherit;font-size:16px}
+.row{display:flex;gap:8px;margin-top:8px}.row input{flex:1;min-width:0;border:1px solid var(--bd);background:#f1f5f3;border-radius:22px;padding:0 14px;min-height:44px;font-size:16px;font-family:inherit}
+.send{background:var(--pri2);color:#fff;border:0;border-radius:22px;padding:0 18px;min-height:44px;font-weight:600;font-size:14px;font-family:inherit;cursor:pointer}
+.empty{text-align:center;color:var(--mut);padding:28px 0}
+.oncom .sticky{display:none!important}
+.hide{display:none!important}
+@media (max-width:560px){
+ .tr:first-child{display:none}.tr{grid-template-columns:1fr;font-size:15px}.tr>div{padding:9px 14px}.tr>div:first-child{background:var(--soft);font-weight:800}
+ .tr>div:nth-child(2)::before,.tr>div:nth-child(3)::before{display:block;font-size:12px;font-weight:700;opacity:.75}.tr>div:nth-child(2)::before{content:"Luna Whiteboard"}.tr>div:nth-child(3)::before{content:"Applications par abonnement"}
+ .logo span{display:none}
+ .sticky{display:block;position:fixed;left:0;right:0;bottom:0;z-index:8;background:rgba(255,255,255,.97);border-top:1px solid var(--bd);padding:8px 14px calc(8px + env(safe-area-inset-bottom,0px));transform:translateY(115%);transition:transform .25s}
+ .sticky.show{transform:none}.sticky .btn{width:100%;min-height:50px;padding:8px 18px;border-radius:14px}.sticky .btn b{font-size:17px}
+ footer{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}.toast{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+}
+@media (min-width:561px){.nl{display:inline-flex}.aud{grid-template-columns:repeat(3,1fr)}.kv{grid-template-columns:1fr 1fr;column-gap:24px}.hero{padding-top:54px}section.s{padding-top:66px}.f{transition:.25s}.f:hover{box-shadow:0 22px 46px rgba(15,31,26,.1);transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style><style>
+/* ===== Refonte de l'accueil : tout est limité à #home pour ne jamais toucher aux Commentaires ===== */
+#home .hero2{padding:26px 0 36px;background:radial-gradient(#d9e6df 1px,transparent 1px) 0 0/24px 24px}
+#home .hg{display:grid;gap:20px;grid-template-areas:"t" "v" "c";align-items:start}
+#home .ht{grid-area:t}#home .hv{grid-area:v}#home .hc{grid-area:c}
+#home .hero2 h1{margin:14px 0 12px;text-align:left;font-size:clamp(30px,8.4vw,54px);letter-spacing:-1.4px;max-width:none}
+#home .hero2 .sub{margin:0;text-align:left;max-width:560px}
+#home .hc .btn{width:100%;max-width:440px}
+#home .hc .proof{justify-content:flex-start;margin-top:16px}
+#home .tray{display:flex;gap:7px;justify-content:center;width:max-content;margin:-2px auto 0;padding:7px 16px;background:#cfe0d7;border-radius:0 0 12px 12px}
+#home .tray span{width:26px;height:7px;border-radius:4px;background:var(--pri)}#home .tray span:nth-child(2){background:var(--gold)}#home .tray span:nth-child(3){background:var(--ink)}
+#home .sx{padding:56px 0 0}
+#home .sx h2{text-align:left;margin:0 0 10px;font-size:clamp(26px,6.4vw,40px)}
+#home .sx .lead{text-align:left;margin:0 0 26px;max-width:640px}
+#home .bento{display:grid;gap:12px;grid-template-columns:1fr}
+#home .bt{border-radius:22px;padding:22px;border:1px solid var(--bd);background:var(--card)}
+#home .bt h3{margin:10px 0 6px;font-size:18px;line-height:1.3}#home .bt p{margin:0;color:var(--mut);font-size:15.5px}
+#home .bt .ic{width:46px;height:46px;font-size:23px;border-radius:14px}
+#home .bt.big{background:var(--ink);color:#fff;border:0;border-radius:30px;padding:26px;position:relative;overflow:hidden}
+#home .big .n{font-size:clamp(52px,15vw,92px);font-weight:800;letter-spacing:-3px;color:var(--gold);line-height:1}
+#home .big h3{font-size:22px;margin-top:6px}#home .big p{color:#c6d4ce;max-width:380px}
+#home .big svg{display:block;width:100%;max-width:340px;margin-top:20px;opacity:.9}
+#home .bt.tint{background:var(--tint);border-color:#cfe6da}
+@media(min-width:760px){#home .bento{grid-template-columns:1.2fr 1fr 1fr}#home .bt.big{grid-row:span 2}#home .bt.wide{grid-column:2/4}}
+#home .eco{display:grid;gap:18px}
+#home .vs{display:grid;gap:10px;align-content:start}
+#home .vs div{border-radius:20px;padding:18px 20px}
+#home .vs .a{background:var(--soft);border:1px dashed #b3c4bb}#home .vs .b{background:var(--tint);border:2px solid var(--pri)}
+#home .vs h3{margin:0 0 4px;font-size:17px}#home .vs p{margin:0;color:var(--mut);font-size:15.5px}
+#home .eco .calc{margin:0;max-width:none;text-align:left}
+#home .calc h3{color:#fff;margin:0 0 14px;font-size:clamp(20px,5.4vw,26px);line-height:1.25}
+#home .calc input{max-width:none;text-align:left;padding:0 16px}
+@media(min-width:900px){#home .eco{grid-template-columns:1fr 1fr;align-items:start;gap:28px}}
+#home .stp{display:grid;gap:12px}
+#home .sp{display:grid;grid-template-columns:auto 1fr;gap:14px;background:var(--soft);border-radius:22px;padding:20px;align-items:start}
+#home .sp .num{margin:0}#home .sp h3{margin:2px 0 4px;font-size:18px}#home .sp p{margin:0;color:var(--mut);font-size:15.5px}
+#home .sp img{width:100%;height:auto;margin-top:12px;border-radius:14px;border:1px solid var(--bd);display:block}
+#home .sp .sc{grid-column:1/-1}
+@media(min-width:760px){#home .stp{grid-template-columns:repeat(3,1fr)}#home .sp{grid-template-columns:1fr}#home .sp .sc{grid-column:auto}}
+#home .uc{display:grid;gap:10px}
+#home .u{border:1px solid var(--bd);border-radius:20px;padding:18px;display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start;background:var(--card)}
+#home .u .ic{width:44px;height:44px;border-radius:14px;font-size:22px}#home .u h3{margin:0 0 3px;font-size:17px}#home .u p{margin:0;color:var(--mut);font-size:15px}
+@media(min-width:760px){#home .uc{grid-template-columns:repeat(6,1fr)}#home .u{grid-column:span 2}#home .u:nth-child(n+4){grid-column:span 3}}
+#home .cl{font-weight:800;margin:28px 0 10px;font-size:17px}
+#home .chips{display:flex;flex-wrap:wrap;gap:8px}#home .chips span{background:var(--tint);color:var(--pri2);font-weight:700;border-radius:999px;padding:9px 15px;font-size:15px}
+#home .ofr{display:grid;gap:14px}
+#home .inc{border:1px solid var(--bd);border-radius:26px;padding:24px;background:var(--card)}#home .inc h3{margin:0 0 12px;font-size:18px}#home .inc .ck{margin:0}
+#home .buyc{border:2px solid var(--pri);border-radius:26px;overflow:hidden;background:var(--card);display:flex;flex-direction:column}
+#home .buyc .ob{flex:1}#home .buyc .oc .btn{max-width:none}
+@media(min-width:900px){#home .ofr{grid-template-columns:1fr 1fr;align-items:stretch}}
+#home .tbl{max-width:none}
+#home .final{margin:56px 0}
+#home .final p{max-width:520px}
+.cfg{position:fixed;left:10px;bottom:10px;max-width:min(380px,calc(100% - 20px));max-height:60vh;overflow:auto;z-index:30;background:#fff;border:2px solid var(--gold);border-radius:16px;padding:14px 16px;font-size:13.5px;box-shadow:0 18px 40px rgba(0,0,0,.2)}
+.cfg b{display:block;margin-bottom:6px}.cfg ul{margin:0;padding-left:18px}
+@media(min-width:900px){#home .hg{grid-template-columns:1.02fr 1fr;grid-template-areas:"t v" "c v";column-gap:44px;align-items:center}#home .hero2{padding:58px 0 66px}#home .sx{padding-top:88px}#home .final{margin:88px 0 64px}}
+
+#home .hprice{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin-bottom:14px}
+#home .hprice b{font-size:clamp(34px,9vw,48px);letter-spacing:-1.5px;color:var(--pri2);line-height:1;white-space:nowrap}
+#home .hprice span{color:var(--mut);font-weight:600;font-size:15px}
+#home .buy small{font-size:13.5px}
+#home .dframe{max-width:820px}#home .dframe .frame{max-width:none}
+.fac{overflow:hidden}
+.fac img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fac.th::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,26,21,.05),rgba(12,26,21,.65))}
+.fac .play,.fac .ft{position:relative}.fac .ft{color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.vph{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:6px;text-align:center;color:#fff;padding:14px;background:linear-gradient(135deg,#065f46,#0c1a15)}
+.vph::before{content:"";position:absolute;inset:10px;border:2px dashed rgba(255,255,255,.4);border-radius:10px}
+.vph b{font-size:15px;position:relative}.vph small{position:relative;color:#c6d4ce;font-size:12.5px}
+.vph .play{opacity:.45;position:relative}
+#home .gal{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+#home .gal figure{margin:0}#home .gal img{width:100%;height:auto;border-radius:18px;border:1px solid var(--bd);display:block}
+#home .gal figcaption{font-weight:700;font-size:15px;margin-top:8px}
+body.pm-open{overflow:hidden}
+.pm{position:fixed;inset:0;z-index:40;background:rgba(12,26,21,.62);display:grid;align-items:end;justify-items:center}
+.pmc{position:relative;background:#fff;width:100%;max-width:460px;border-radius:24px 24px 0 0;padding:24px 20px calc(24px + env(safe-area-inset-bottom,0px));max-height:92vh;max-height:92dvh;overflow:auto}
+.pmc h3{margin:0 40px 6px 0;font-size:20px}
+.pmx{position:absolute;right:10px;top:10px;width:44px;height:44px;border:0;border-radius:50%;background:var(--soft);font-size:26px;line-height:1;cursor:pointer;color:var(--tx)}
+.pmamt{margin-bottom:6px}.pmamt b{display:block;font-size:34px;letter-spacing:-1px;color:var(--pri2);line-height:1.2}.pmamt span{color:var(--mut);font-size:14.5px;font-weight:600}
+.pmf label{display:block;font-weight:600;font-size:14px;margin:14px 0 4px}
+.pmf input{width:100%;min-height:50px;border:1px solid var(--bd);border-radius:12px;padding:0 14px;font:inherit;font-size:16px;background:#f7faf8;color:var(--tx)}
+.pmf .btn,.pmc .btn{width:100%;margin-top:14px}
+.pme{color:#b42318;font-size:14px;margin:10px 0 0;min-height:0}
+.pms{border-radius:16px;padding:14px 16px;margin:14px 0 0;background:var(--soft)}.pms b{display:block;margin-bottom:2px}.pms p{margin:0;color:var(--mut);font-size:15px}
+.pms.ok{background:var(--tint)}.pms.ko{background:#fdecea}
+@media(min-width:561px){.pm{align-items:center;padding:20px}.pmc{border-radius:24px}}
+@media(max-width:340px){header .top{gap:6px}}
+#home details{margin-left:0;margin-right:0;max-width:760px}
+</style></head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header><div class="wrap top">
+  <a class="logo" href="#top" aria-label="Luna Whiteboard, accueil"><i aria-hidden="true">☾</i><span>Luna Whiteboard</span></a>
+  <div class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab on" role="tab" aria-selected="true" data-t="home" type="button">Accueil</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="com" type="button">Commentaires</button>
+  </div>
+  <div class="acct">
+    <button class="ab" id="acctBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="pop" aria-label="Compte : vérification en cours">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><i class="dot" aria-hidden="true"></i>
+    </button>
+    <div class="pop hide" id="pop" role="dialog" aria-label="Compte"></div>
+  </div>
+</div></header>
+
+<main id="main"><span id="top"></span>
+<div id="home">
+<section class="hero2"><div class="wrap"><div class="hg">
+  <div class="ht"><span class="pill">📱 Application Android</span>
+    <h1>Créez des vidéos whiteboard sur Android. Payez une seule fois.</h1>
+    <p class="sub">20 000 images doodle, 50 musiques et voix off intégrées. Aucun abonnement, et vous créez même sans Internet.</p></div>
+  <div class="hv"><div class="frame"><div class="video" id="heroVideo"></div></div><div class="tray" aria-hidden="true"><span></span><span></span><span></span></div></div>
+  <div class="hc">
+    <div class="hprice"><b data-price></b><span>Paiement unique — Accès à vie — Aucun abonnement</span></div>
+    <a class="btn buy" id="dl" href="#" aria-haspopup="dialog"><b>Acheter Luna Whiteboard</b><small data-pricenote></small></a>
+    <div class="proof"><span>Appareils illimités</span><span>Création sans Internet</span><span>Ressources intégrées</span></div></div>
+</div></div></section>
+
+<div class="wrap">
+  <section class="sx" id="demo"><h2>Voyez ce que Luna produit</h2><p class="lead">Une vidéo réalisée avec Luna Whiteboard, du début à la fin.</p>
+    <div class="dframe"><div class="frame"><div class="video" id="demoVideo"></div></div></div></section>
+
+  <section class="sx" id="ressources"><h2>Tout est dans l’application</h2><p class="lead">Ouvrez Luna et créez. Aucune ressource à chercher ailleurs.</p>
+  <div class="bento">
+    <div class="bt big"><div class="n">20 000</div><h3>images doodle</h3><p>Personnages, objets, icônes et décors pour illustrer chaque idée.</p>
+      <svg viewBox="0 0 340 90" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="34" cy="32" r="16"/><path d="M34 48v22M20 58l14-6 14 6"/><path d="M96 70V34l24-18 24 18v36z"/><path d="M110 70V50h20v20" stroke="#f59e0b"/><path d="M190 22a20 20 0 1 1 22 33v8h-22v-8a20 20 0 0 1 0-33z" stroke="#f59e0b"/><path d="M194 74h14"/><path d="M262 66l22-44 22 44z"/><path d="M272 78h24" stroke="#f59e0b"/></svg></div>
+    <div class="bt"><div class="ic" aria-hidden="true">🎵</div><h3>50 musiques</h3><p>Choisissez l’ambiance de votre vidéo.</p></div>
+    <div class="bt"><div class="ic" aria-hidden="true">🎙️</div><h3>Voix off</h3><p>Ajoutez votre voix directement dans l’application.</p></div>
+    <div class="bt tint wide"><div class="ic" aria-hidden="true" style="background:#fff">📴</div><h3>Créez sans connexion</h3><p>Après installation, plus besoin d’Internet pour créer. Il sert seulement à acheter, télécharger l’APK et partager vos vidéos.</p></div>
+  </div></section>
+
+  <section class="sx hide" id="shots"><h2>Luna en images</h2><p class="lead">Captures réelles de l’application.</p><div class="gal" id="galL"></div></section>
+
+  <section class="sx" id="eco"><h2>Payez une fois. Gardez votre outil.</h2><p class="lead">Un abonnement se renouvelle. Luna, non.</p>
+  <div class="eco">
+    <div class="vs"><div class="a"><h3>Application par abonnement</h3><p>Une facture chaque mois ou chaque année.</p></div>
+      <div class="b"><h3>Luna Whiteboard</h3><p><strong data-price></strong> une seule fois. Accès à vie.</p></div></div>
+    <div class="calc"><h3>Combien vous coûte votre abonnement ?</h3>
+      <label for="mo">Dépense mensuelle (<span class="cur"></span>)</label>
+      <input id="mo" type="number" inputmode="numeric" min="0" placeholder="Ex : 5000" autocomplete="off">
+      <div class="res" id="res" aria-live="polite"></div></div>
+  </div></section>
+
+  <section class="sx" id="etapes"><h2>Comment ça marche</h2><p class="lead">Trois étapes, sur votre téléphone.</p>
+  <div class="stp">
+    <div class="sp"><div class="num">1</div><div><h3>Choisissez vos images</h3><p>Parcourez la bibliothèque doodle.</p></div></div>
+    <div class="sp"><div class="num">2</div><div><h3>Construisez la vidéo</h3><p>Assemblez vos scènes, ajoutez musique et voix off.</p></div></div>
+    <div class="sp"><div class="num">3</div><div><h3>Exportez</h3><p>Récupérez votre vidéo et partagez-la.</p></div></div>
+  </div></section>
+
+  <section class="sx" id="usages"><h2>Une vidéo pour chaque besoin</h2>
+  <div class="uc" style="margin-top:22px">
+    <div class="u"><div class="ic" aria-hidden="true">🏫</div><div><h3>Pédagogie</h3><p>Expliquez une notion pas à pas.</p></div></div>
+    <div class="u"><div class="ic" aria-hidden="true">▶️</div><div><h3>Chaîne YouTube</h3><p>Vidéos explicatives, éducatives ou documentaires.</p></div></div>
+    <div class="u"><div class="ic" aria-hidden="true">📣</div><div><h3>Communication</h3><p>Présentez un produit ou une idée clairement.</p></div></div>
+    <div class="u"><div class="ic" aria-hidden="true">💼</div><div><h3>Présentation de services</h3><p>Montrez ce que vous proposez en quelques minutes.</p></div></div>
+    <div class="u"><div class="ic" aria-hidden="true">📖</div><div><h3>Storytelling</h3><p>Racontez une histoire en images, musique et voix.</p></div></div>
+  </div>
+  <p class="cl">Pour tous ceux qui ont une idée à expliquer</p>
+  <div class="chips"><span>Enseignants</span><span>Formateurs</span><span>Créateurs YouTube</span><span>Entrepreneurs</span><span>Vendeurs en ligne</span><span>Étudiants</span><span>Créateurs indépendants</span></div></section>
+
+  <section class="sx" id="offre"><h2>Une offre, un prix</h2><p class="lead">Un outil de création complet, sans abonnement.</p>
+  <div class="ofr">
+    <div class="inc"><h3>Ce que vous recevez</h3>
+      <ul class="ck"><li>Le logiciel Luna Whiteboard pour Android</li><li>20 000 images doodle</li><li>50 musiques</li><li>La voix off</li><li>La création sans connexion Internet, après installation</li><li>L’accès à vie</li><li>L’installation sur un nombre illimité d’appareils</li></ul></div>
+    <div class="buyc">
+      <div class="oh"><small>Luna Whiteboard pour Android</small><div class="pr" data-price></div><small>Paiement unique — Accès à vie — Aucun abonnement</small></div>
+      <div class="ob" id="obx"><div class="kv" id="kv"></div></div>
+      <div class="oc"><a class="btn buy" href="#" aria-haspopup="dialog"><b>Acheter Luna Whiteboard</b><small data-pricenote></small></a></div>
+    </div>
+  </div></section>
+
+  <section class="sx" id="compare"><h2>Luna et les applications par abonnement</h2><p class="lead">Des différences objectives, sans viser une marque.</p>
+  <div class="tbl">
+    <div class="tr"><div></div><div>Luna Whiteboard</div><div>Applications par abonnement</div></div>
+    <div class="tr"><div>Paiement</div><div id="cmpPay">Achat unique</div><div>Abonnement mensuel ou annuel</div></div>
+    <div class="tr"><div>Plateforme</div><div>Android, sur smartphone</div><div>Variable selon l’outil</div></div>
+    <div class="tr"><div>Ressources</div><div>20 000 images, 50 musiques, voix off</div><div>Variable selon l’outil</div></div>
+    <div class="tr"><div>Création sans Internet</div><div>Oui, après installation</div><div>Variable selon l’outil</div></div>
+    <div class="tr"><div>Appareils</div><div>Nombre illimité</div><div>Variable selon l’outil</div></div>
+  </div></section>
+
+  <section class="sx hide" id="tests"><h2>Ce qu’en disent les utilisateurs</h2><div class="grid" id="testsL"></div></section>
+
+  <section class="sx" id="faq"><h2>Vos questions</h2><div id="faqL" style="margin-top:18px"></div></section>
+
+  <section class="sx" id="confiance"><h2>Qui est derrière Luna ?</h2><p class="lead">Les informations utiles avant d’installer une application.</p><div class="trust" id="trustL"></div></section>
+
+  <div class="final"><h2>Prêt à créer votre première vidéo ?</h2><p><strong data-price></strong>, une seule fois. Accès à vie.</p><a class="btn buy" id="dlFinal" href="#" aria-haspopup="dialog"><b>Acheter Luna Whiteboard</b><small data-pricenote></small></a></div>
+</div>
+</div>
+
+<div id="com" class="hide wrap" style="max-width:720px;padding-top:22px">
+  <h2 style="text-align:left;margin-bottom:6px">Commentaires <span id="cc" class="tbd"></span></h2>
+  <p class="lnote hide" id="lnote">Pour le moment, les commentaires sont enregistrés uniquement sur cet appareil. Ils seront partagés avec les autres visiteurs dès que le service en ligne sera activé.</p>
+  <div id="list" aria-live="polite"></div>
+  <div class="composer">
+    <label class="sr" for="nm">Nom d’utilisateur</label><input id="nm" maxlength="24" placeholder="Votre nom d’utilisateur" autocomplete="nickname">
+    <div class="row"><label class="sr" for="tx">Commentaire</label><input id="tx" maxlength="500" placeholder="Écrivez un commentaire…" enterkeyhint="send"><button class="send" id="post" type="button">Publier</button></div>
+  </div>
+</div>
+</main>
+<footer><nav id="footNav" aria-label="Liens légaux"></nav><div id="copy"></div></footer>
+<div class="sticky" id="sticky"><a class="btn buy" href="#" aria-haspopup="dialog"><b>Acheter Luna Whiteboard</b><small data-pricenote></small></a></div>
+<div class="pm hide" id="pm" role="dialog" aria-modal="true" aria-labelledby="pmT">
+  <div class="pmc">
+    <button class="pmx" id="pmX" type="button" aria-label="Fermer">×</button>
+    <h3 id="pmT">Acheter Luna Whiteboard</h3>
+    <div class="pmamt"><b data-price></b><span>Paiement unique — Accès à vie</span></div>
+    <div id="pmBody" aria-live="polite"></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ============================================================
+   CONFIGURATION : tout ce que vous pouvez modifier est ici.
+   Laissez "" (ou [] / null) pour une information non renseignée :
+   la section ou la mention correspondante est alors masquée ou
+   affichée comme « bientôt disponible ». Rien n’est inventé.
+   ============================================================ */
+var CONFIG={
+  /* ========== PRIX (source unique : tous les affichages en dépendent) ========== */
+  priceAmount:22000,     // prix en nombre, payé une seule fois
+  currency:"FCFA",
+
+  /* ========== VIDÉOS DE DÉMONSTRATION : collez ici vos 2 liens YouTube ========== */
+  videos:{
+    hero:"",             // vidéo n°1 : haut de page
+    demo:""              // vidéo n°2 : section « Voyez ce que Luna produit »
+  },
+
+  /* ========== CAPTURES D’ÉCRAN RÉELLES (liens d’images ; vide = non affichée) ========== */
+  screens:{
+    interface:"",        // interface principale
+    doodles:"",          // bibliothèque de doodles
+    scenes:"",           // création et organisation des scènes
+    audio:"",            // musique et voix off
+    result:""            // résultat final
+  },
+
+  /* ========== PAIEMENT FEDAPAY : paramètres PUBLICS uniquement ==========
+     Les clés secrètes FedaPay vont dans les variables d’environnement du serveur
+     (voir le dossier fedapay-backend), JAMAIS ici. */
+  pay:{
+    apiBase:"",          // adresse de VOTRE backend, ex : "https://paiement.votredomaine.com". Vide = paiement désactivé
+    publicKey:"",        // clé PUBLIQUE FedaPay (jamais la clé secrète)
+    successUrl:""        // page de confirmation/téléchargement (facultatif, adresse https ou /chemin)
+  },
+
+  /* ========== TÉLÉCHARGEMENT, COMPATIBILITÉ, CONDITIONS (vide = ligne masquée) ========== */
+  downloadInfo:"",       // comment l’acheteur reçoit l’application
+  android:"",            // ex : "Android 8.0 ou supérieur"
+  storage:"",            // ex : "150 Mo d’espace libre"
+  install:"",            // explication d’installation (sinon texte général)
+  permissions:"",        // autorisations demandées par l’application
+  extras:"",             // achats supplémentaires éventuels
+  terms:"",              // conditions de licence (résumé)
+  refund:"",             // remboursement / garantie
+
+  /* ========== ÉDITEUR ET CONTACT ========== */
+  publisher:"",
+  email:"",
+  supportUrl:"",         // WhatsApp, formulaire… (sinon l’e-mail est utilisé)
+  privacyUrl:"",
+  termsUrl:"",
+
+  /* ========== AUTRES ========== */
+  users:null,            // nombre RÉEL d’utilisateurs (null = masqué)
+  testimonials:[],       // [{name:"Awa K.",role:"Enseignante",text:"…",photo:""}] — vrais clients uniquement
+
+  /* ========== COMPTE ET COMMENTAIRES (inchangé) ========== */
+  authApi:"",            // GET → {"loggedIn":true,"name":"Awa"} (cookies inclus). Vide = visiteur déconnecté
+  loginUrl:"",
+  logoutUrl:"",
+  commentsApi:""         // base de l’API des commentaires. Vide = enregistrés sur l’appareil seulement
+};
+/* ============================================================ */
+
+function $(s){return document.querySelector(s)}
+function $$(s){return Array.prototype.slice.call(document.querySelectorAll(s))}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function fmt(n){return Number(n).toLocaleString("fr-FR")}
+function has(v){return typeof v==="string"&&v.trim()!==""}
+function safeUrl(u){return /^(https?:\/\/|mailto:|tel:)/i.test(u)?u:""}
+function info(v){return has(v)?esc(v):'<span class="tbd">Information bientôt disponible</span>'}
+var support=has(CONFIG.supportUrl)?safeUrl(CONFIG.supportUrl):(has(CONFIG.email)?"mailto:"+CONFIG.email:"");
+
+var toastT;
+function toast(m){var t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove("on")},4200)}
+
+/* =====================================================================
+   ADAPTATEUR FEDAPAY (frontend) : à compléter lors de l’intégration réelle.
+   - Ouvre le paiement FedaPay DANS la page, à partir de ce que renvoie VOTRE serveur.
+   - Se base sur la documentation officielle : https://docs.fedapay.com
+   - Ne contient et ne doit contenir AUCUNE clé secrète.
+   - Ne jamais conclure à un succès ici : le succès n’est affiché qu’après
+     confirmation du serveur (voir verify() plus bas).
+   ready() doit renvoyer true uniquement quand open() est réellement implémentée.
+   open(ctx,cb) : ctx = {publicKey, session, customer, amount, currency}
+                   cb.onClosed() est à appeler quand le visiteur ferme/termine la fenêtre.
+   ===================================================================== */
+var FedaPayAdapter={
+  ready:function(){return false},
+  open:function(ctx,cb){throw new Error("FedaPayAdapter.open n’est pas encore implémentée")}
+};
+
+/* ---------- Accueil (isolé : n’interfère pas avec les commentaires) ---------- */
+(function(){
+var PL=fmt(CONFIG.priceAmount).replace(/[\s\u202f\u00a0]/g,"\u00a0")+"\u00a0"+CONFIG.currency;
+$$("[data-price]").forEach(function(e){e.textContent=PL});
+$$("[data-pricenote]").forEach(function(e){e.textContent=PL+" · paiement unique"});
+$$(".cur").forEach(function(e){e.textContent=CONFIG.currency});
+function okUrl(u){return typeof u==="string"&&/^(https:\/\/|\/(?!\/))/.test(u)?u:""}
+
+/* ----- Vidéos : miniature + lecture au toucher (rien n’est chargé avant) ----- */
+function ytId(u){var m=String(u||"").match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/);return m?m[1]:null}
+function videoHTML(url,title,slot){var id=ytId(url);
+  if(id)return'<button class="fac th" type="button" data-yt="'+id+'" aria-label="Lire la vidéo : '+esc(title)+'"><img src="https://i.ytimg.com/vi/'+id+'/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()"><span class="play" aria-hidden="true">▶</span><span class="ft">'+esc(title)+'</span></button>';
+  return'<div class="vph"><span class="play" aria-hidden="true" style="width:52px;height:52px;font-size:20px">▶</span><b>Vidéo de démonstration à ajouter</b><small>CONFIG.videos.'+slot+'</small></div>'}
+document.addEventListener("click",function(e){var b=e.target.closest(".fac");if(!b)return;
+  b.outerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+b.dataset.yt+'?autoplay=1&rel=0" title="Vidéo Luna Whiteboard" allow="autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>'});
+var V=CONFIG.videos||{};
+$("#heroVideo").innerHTML=videoHTML(V.hero,"Voir Luna en action","hero");
+$("#demoVideo").innerHTML=videoHTML(V.demo,"Voir la démonstration","demo");
+
+/* ----- Captures d’écran réelles : seules celles renseignées sont affichées ----- */
+var SC=CONFIG.screens||{},scl=[["interface","Interface principale"],["doodles","Bibliothèque de doodles"],["scenes","Création des scènes"],["audio","Musique et voix off"],["result","Résultat final"]].filter(function(s){return okUrl(SC[s[0]])||/^https?:\/\//i.test(SC[s[0]]||"")});
+if(scl.length){$("#shots").classList.remove("hide");$("#galL").innerHTML=scl.map(function(s){return'<figure><img src="'+esc(SC[s[0]])+'" alt="Capture d’écran de Luna Whiteboard : '+s[1].toLowerCase()+'" loading="lazy" decoding="async"><figcaption>'+s[1]+'</figcaption></figure>'}).join("")}
+
+if(typeof CONFIG.users==="number"&&CONFIG.users>0){var us=document.createElement("span");us.textContent=fmt(CONFIG.users)+" utilisateurs";$(".proof").appendChild(us)}
+
+var tt=(CONFIG.testimonials||[]).filter(function(t){return t&&has(t.text)&&has(t.name)});
+if(tt.length){$("#tests").classList.remove("hide");$("#testsL").innerHTML=tt.map(function(t){return'<div class="f tq"><p>« '+esc(t.text)+' »</p>'+(has(t.photo)&&safeUrl(t.photo)?'<img src="'+esc(t.photo)+'" alt="Photo de '+esc(t.name)+'" loading="lazy">':'')+'<b>'+esc(t.name)+'</b><span>'+esc(t.role||"")+'</span></div>'}).join("")}
+
+/* ----- Offre : seules les lignes renseignées sont affichées ----- */
+$("#cmpPay").textContent=PL+", une seule fois";
+var kv=[["Téléchargement",CONFIG.downloadInfo],["Achats supplémentaires",CONFIG.extras],["Conditions d’utilisation",CONFIG.terms],["Si l’application ne convient pas",CONFIG.refund],["Android requis",CONFIG.android],["Espace nécessaire",CONFIG.storage]].filter(function(r){return has(r[1])});
+$("#kv").innerHTML=kv.map(function(r){return'<div><span>'+r[0]+'</span><b>'+esc(r[1])+'</b></div>'}).join("");
+if(!kv.length)$("#obx").classList.add("hide");
+
+/* ----- Calculateur : utilise le prix unique CONFIG.priceAmount ----- */
+$("#mo").addEventListener("input",function(){
+  var m=parseFloat(this.value),r=$("#res"),c=" "+esc(CONFIG.currency),P=CONFIG.priceAmount;
+  if(!(m>0)){r.innerHTML="";return}
+  var y=m*12,t=m*36,d=function(x){var v=Math.round(x-P);return v>=0?"Économie de "+fmt(v)+c:"Luna coûte "+fmt(-v)+c+" de plus"};
+  r.innerHTML='<div class="rr"><span>Abonnements sur 1 an</span><b>'+fmt(Math.round(y))+c+'</b></div><div class="rr"><span>Abonnements sur 3 ans</span><b>'+fmt(Math.round(t))+c+'</b></div><div class="rr"><span>Luna (une seule fois)</span><b>'+fmt(P)+c+'</b></div><div class="rr"><span>Différence sur 1 an</span><b>'+d(y)+'</b></div><div class="rr"><span>Différence sur 3 ans</span><b>'+d(t)+'</b></div><div class="rr"><span>Luna est amortie en</span><b>'+Math.ceil(P/m)+' mois</b></div><p class="cnote">Calcul indicatif : il suppose que Luna remplace vos abonnements actuels.</p>'});
+
+/* ----- FAQ : une réponse inconnue n’est jamais inventée, la question est masquée ----- */
+function ok(v){return has(v)?esc(v):null}
+var PY=CONFIG.pay||{},api=/^https:\/\/|^\/(?!\/)/.test(PY.apiBase||"")?PY.apiBase.replace(/\/$/,""):"";
+var faq=[
+ ["Combien coûte Luna ?",PL+", en paiement unique. Accès à vie, sans abonnement."],
+ ["Y a-t-il un abonnement ?","Non. Ni mensuel, ni annuel."],
+ ["Luna fonctionne-t-elle sans Internet ?","Oui pour la création, une fois l’application et ses ressources installées. Internet reste nécessaire pour acheter, télécharger l’APK et partager vos vidéos en ligne."],
+ ["Est-ce une application Android ?","Oui, conçue pour Android et pour une utilisation sur smartphone."],
+ ["Les images et les musiques sont-elles incluses ?","Oui : 20 000 images doodle, 50 musiques et la voix off sont intégrées. Aucun paiement supplémentaire n’est demandé pour y accéder."+(has(CONFIG.extras)?" Achats supplémentaires : "+esc(CONFIG.extras)+".":"")],
+ ["Peut-on l’installer sur plusieurs appareils ?","Oui, sur un nombre illimité d’appareils."],
+ ["Comment payer ?",api?"Directement sur cette page, en cliquant sur « Acheter Luna Whiteboard »."+(has(CONFIG.downloadInfo)?" "+esc(CONFIG.downloadInfo):""):null],
+ ["Comment installer l’application ?",has(CONFIG.install)?esc(CONFIG.install):"Ouvrez le fichier APK, autorisez l’installation depuis cette source si Android le demande, puis ouvrez Luna Whiteboard."],
+ ["Quelle version d’Android est nécessaire ?",ok(CONFIG.android)],
+ ["Quel espace de stockage faut-il ?",ok(CONFIG.storage)],
+ ["Que se passe-t-il si l’application ne me convient pas ?",ok(CONFIG.refund)],
+ ["Comment contacter l’assistance ?",support?'<a href="'+esc(support)+'" rel="noopener">Contacter l’assistance</a>.':null]
+].filter(function(q){return q[1]});
+$("#faqL").innerHTML=faq.map(function(q){return'<details><summary>'+q[0]+'</summary><p>'+q[1]+'</p></details>'}).join("");
+
+function lnk(u,t){return has(u)&&safeUrl(u)?'<a href="'+esc(u)+'" rel="noopener">'+t+'</a>':null}
+var tr=[["Éditeur",ok(CONFIG.publisher)],["Contact",has(CONFIG.email)?'<a href="mailto:'+esc(CONFIG.email)+'">'+esc(CONFIG.email)+'</a>':null],["Assistance",support?'<a href="'+esc(support)+'" rel="noopener">Obtenir de l’aide</a>':null],
+ ["Politique de confidentialité",lnk(CONFIG.privacyUrl,"Lire la politique")],["Conditions générales de vente",lnk(CONFIG.termsUrl,"Lire les conditions")],
+ ["Installation de l’APK","Android peut demander d’autoriser l’installation depuis cette source. Installez uniquement un APK fourni par l’éditeur."],["Autorisations de l’application",ok(CONFIG.permissions)]].filter(function(r){return r[1]});
+$("#trustL").innerHTML=tr.map(function(r){return'<div class="f"><h3>'+r[0]+'</h3><p>'+r[1]+'</p></div>'}).join("");
+var fl=[];if(lnk(CONFIG.privacyUrl,"x"))fl.push('<a href="'+esc(CONFIG.privacyUrl)+'">Confidentialité</a>');if(lnk(CONFIG.termsUrl,"x"))fl.push('<a href="'+esc(CONFIG.termsUrl)+'">Conditions générales</a>');if(support)fl.push('<a href="'+esc(support)+'">Assistance</a>');
+$("#footNav").innerHTML=fl.join("");
+$("#copy").textContent="© "+new Date().getFullYear()+" "+(has(CONFIG.publisher)?CONFIG.publisher:"Luna Whiteboard")+" · Application pour Android";
+
+/* =====================================================================
+   PAIEMENT INTÉGRÉ (fenêtre dans la page, sans redirection)
+   Flux : 1) formulaire → POST {api}/create-transaction (le SERVEUR fixe le montant)
+          2) FedaPayAdapter.open(...) affiche le paiement dans la page
+          3) à la fermeture → GET {api}/transaction-status?id=… (vérification SERVEUR)
+          4) « Paiement confirmé » n’apparaît QUE si le serveur répond status:"paid".
+   Contrat de réponse attendu du serveur (voir fedapay-backend/README.md) :
+     create-transaction  → {transactionId, …données utiles à l’adaptateur}
+     transaction-status  → {status:"paid"|"pending"|"failed"|"cancelled", downloadUrl?}
+   ===================================================================== */
+var pm=$("#pm"),pmB=$("#pmBody"),txId=null,pmFocus=null;
+function enabled(){return !!api&&FedaPayAdapter.ready()}
+function show(h){pmB.innerHTML=h}
+function box(cls,t,p,extra){return'<div class="pms '+cls+'" role="status"><b>'+t+'</b><p>'+p+'</p></div>'+(extra||"")}
+function again(l){return'<button class="btn" type="button" data-pm="form"><b>'+l+'</b></button>'}
+function renderForm(){
+  if(!enabled()){show(box("","Paiement bientôt activé","Le paiement en ligne n’est pas encore ouvert sur ce site."+(support?' <a href="'+esc(support)+'" rel="noopener">Contactez-nous</a> pour acheter.':"")));return}
+  show('<form class="pmf" id="pmF" novalidate><label for="pmN">Nom</label><input id="pmN" autocomplete="name" required><label for="pmE">E-mail</label><input id="pmE" type="email" inputmode="email" autocomplete="email" required><label for="pmP">Téléphone (facultatif)</label><input id="pmP" type="tel" inputmode="tel" autocomplete="tel"><p class="pme" id="pmErr" role="alert"></p><button class="btn" type="submit"><b>Payer '+PL+'</b></button></form>')}
+function pmOpen(form){pmFocus=document.activeElement;pm.classList.remove("hide");document.body.classList.add("pm-open");if(form!==false)renderForm();(pm.querySelector("input")||$("#pmX")).focus()}
+function pmClose(){pm.classList.add("hide");document.body.classList.remove("pm-open");if(pmFocus&&pmFocus.focus)pmFocus.focus()}
+function verify(){if(!txId||!api)return;
+  show(box("","Vérification du paiement…","Nous interrogeons le serveur."));
+  fetch(api+"/transaction-status?id="+encodeURIComponent(txId)).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
+    var s=d&&d.status;
+    if(s==="paid"){var l=okUrl(d.downloadUrl)||okUrl(PY.successUrl);show(box("ok","Paiement confirmé","Merci ! Votre accès à Luna Whiteboard est validé.",l?'<a class="btn" href="'+esc(l)+'" rel="noopener"><b>Accéder au téléchargement</b></a>':""))}
+    else if(s==="pending")show(box("","Paiement en attente","Le paiement n’est pas encore confirmé.",'<button class="btn alt" type="button" data-pm="verify"><b>Vérifier à nouveau</b></button>'))
+    else if(s==="failed")show(box("ko","Paiement échoué","Le paiement n’a pas abouti. Vous pouvez réessayer.",again("Réessayer")))
+    else if(s==="cancelled")show(box("ko","Paiement annulé","Aucun paiement n’a été effectué.",again("Réessayer")))
+    else throw 0}).catch(function(){show(box("ko","Vérification impossible","Nous n’avons pas pu vérifier le paiement. Si vous avez payé, vérifiez à nouveau ou contactez l’assistance.",'<button class="btn alt" type="button" data-pm="verify"><b>Vérifier à nouveau</b></button>'))})}
+function start(c){
+  show(box("","Préparation du paiement…","Un instant."));
+  fetch(api+"/create-transaction",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(c)})
+  .then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(s){
+    if(!s||!s.transactionId)throw 0;txId=String(s.transactionId);
+    show(box("","Finalisez le paiement","Terminez le paiement dans la fenêtre FedaPay, puis vérifiez.",'<button class="btn alt" type="button" data-pm="verify"><b>J’ai payé : vérifier</b></button>'));
+    FedaPayAdapter.open({publicKey:PY.publicKey,session:s,customer:c,amount:CONFIG.priceAmount,currency:CONFIG.currency},{onClosed:verify})})
+  .catch(function(){show(box("ko","Paiement impossible","Le paiement n’a pas pu démarrer. Réessayez dans un instant.",again("Réessayer")))})}
+document.addEventListener("click",function(e){var a=e.target.closest(".buy");if(a){e.preventDefault();pmOpen()}});
+pmB.addEventListener("click",function(e){var b=e.target.closest("[data-pm]");if(!b)return;if(b.dataset.pm==="form")renderForm();else verify()});
+pmB.addEventListener("submit",function(e){e.preventDefault();var n=$("#pmN").value.trim(),m=$("#pmE").value.trim(),p=$("#pmP").value.trim();
+  if(!n||!/^\S+@\S+\.\S+$/.test(m)){$("#pmErr").textContent="Indiquez votre nom et une adresse e-mail valide.";return}
+  start({name:n,email:m,phone:p})});
+$("#pmX").addEventListener("click",pmClose);
+pm.addEventListener("click",function(e){if(e.target===pm)pmClose()});
+document.addEventListener("keydown",function(e){if(pm.classList.contains("hide"))return;
+  if(e.key==="Escape")pmClose();
+  if(e.key==="Tab"){var f=[].slice.call(pm.querySelectorAll("button,input,a[href]")).filter(function(x){return x.offsetParent});if(!f.length)return;var i=f.indexOf(document.activeElement);
+    if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus()}}});
+/* Retour après paiement : ...?tx=IDENTIFIANT ouvre la vérification serveur */
+var q=/[?&]tx=([\w-]{1,80})/.exec(location.search);if(q&&api){txId=q[1];pmOpen(false);verify()}
+
+/* ----- Aide au propriétaire : ajoutez ?config=1 à l’adresse pour lister ce qui manque ----- */
+if(/[?&]config=1/.test(location.search)){
+  var need=[["pay.apiBase","backend de paiement",PY.apiBase],["pay.publicKey","clé publique FedaPay",PY.publicKey],["FedaPayAdapter","adaptateur FedaPay (ready/open)",FedaPayAdapter.ready()],["videos.hero","vidéo n°1",V.hero],["videos.demo","vidéo n°2",V.demo],["publisher","nom de l’éditeur",CONFIG.publisher],["email","e-mail de contact",CONFIG.email],["privacyUrl","politique de confidentialité",CONFIG.privacyUrl],["termsUrl","conditions générales de vente",CONFIG.termsUrl],["downloadInfo","infos de téléchargement",CONFIG.downloadInfo],["android","version Android",CONFIG.android],["storage","espace de stockage",CONFIG.storage],["refund","remboursement",CONFIG.refund],["terms","conditions de licence",CONFIG.terms],["permissions","autorisations Android",CONFIG.permissions]];
+  var miss=need.filter(function(n){return !n[2]}).map(function(n){return"<li>"+n[1]+"</li>"});
+  if(!Object.keys(SC).some(function(k){return SC[k]}))miss.push("<li>captures d’écran</li>");
+  var p=document.createElement("div");p.className="cfg";p.innerHTML="<b>À renseigner ("+miss.length+")</b><ul>"+miss.join("")+"</ul>";document.body.appendChild(p)}
+})();
+/* Compte : icône « connecté / non connecté ». Source = CONFIG.authApi (Cloudflare) */
+var session={loggedIn:false,name:""};
+function setSession(x){session=x;var b=$("#acctBtn"),pop=$("#pop"),lg=has(CONFIG.loginUrl)&&safeUrl(CONFIG.loginUrl),lo=has(CONFIG.logoutUrl)&&safeUrl(CONFIG.logoutUrl);
+  b.classList.toggle("in",x.loggedIn);
+  b.setAttribute("aria-label",x.loggedIn?"Compte : connecté"+(x.name?" en tant que "+x.name:""):"Compte : non connecté");
+  pop.innerHTML=x.loggedIn?'<p>Connecté'+(x.name?' en tant que <b>'+esc(x.name)+'</b>':'')+'</p>'+(lo?'<a class="btn alt" href="'+esc(lo)+'"><b>Se déconnecter</b></a>':'')
+   :'<p>Vous n’êtes pas connecté.</p>'+(lg?'<a class="btn" href="'+esc(lg)+'"><b>Se connecter</b></a>':'<p class="tbd">La connexion sera bientôt disponible.</p>');
+  var nm=$("#nm");if(x.loggedIn&&x.name){nm.value=x.name;nm.readOnly=true}else{nm.readOnly=false}}
+setSession({loggedIn:false,name:""});
+if(has(CONFIG.authApi)){$("#acctBtn").setAttribute("aria-label","Compte : vérification en cours");
+  fetch(CONFIG.authApi,{credentials:"include"}).then(function(r){return r.ok?r.json():{}}).then(function(x){setSession({loggedIn:!!x.loggedIn,name:String(x.name||"")})}).catch(function(){setSession({loggedIn:false,name:""})})}
+function popTo(o){$("#pop").classList.toggle("hide",!o);$("#acctBtn").setAttribute("aria-expanded",String(o))}
+$("#acctBtn").addEventListener("click",function(e){e.stopPropagation();popTo($("#pop").classList.contains("hide"))});
+document.addEventListener("click",function(e){if(!e.target.closest(".acct"))popTo(false)});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")popTo(false)});
+
+/* Onglets */
+$$(".tab").forEach(function(b){b.addEventListener("click",function(){
+  $$(".tab").forEach(function(x){var on=x===b;x.classList.toggle("on",on);x.setAttribute("aria-selected",String(on))});
+  $("#home").classList.toggle("hide",b.dataset.t!=="home");$("#com").classList.toggle("hide",b.dataset.t!=="com");
+  document.body.classList.toggle("oncom",b.dataset.t==="com");popTo(false);window.scrollTo(0,0)})});
+
+/* Commentaires (comportement Facebook Lite : réponses, @identifiant, J’aime / Je n’aime pas)
+   Mode local par défaut. Avec CONFIG.commentsApi, contrat attendu :
+   GET  {api}/comments            → [{id,p,n,x,t,l,d}]   (p = id du parent ou null)
+   POST {api}/comments            ← {p,n,x}
+   POST {api}/comments/{id}/vote  ← {vote:"l"|"d"|null} */
+var KC="luna_cm_v2",KV="luna_vt_v2",KN="luna_nm_v2",capi=has(CONFIG.commentsApi)?CONFIG.commentsApi.replace(/\/$/,""):"";
+var items=[],votes={},replyTo=null;
+function lget(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function lset(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+votes=lget(KV,{});try{if(!$("#nm").value)$("#nm").value=localStorage.getItem(KN)||""}catch(e){}
+if(!capi)$("#lnote").classList.remove("hide");
+var cols=["#047857","#b45309","#7c3aed","#be185d","#0f766e","#c2410c"];
+function col(n){var h=0;for(var i=0;i<n.length;i++)h+=n.charCodeAt(i);return cols[h%cols.length]}
+function ago(t){var s=(Date.now()-t)/1e3;if(s<60)return"À l’instant";if(s<3600)return Math.floor(s/60)+" min";if(s<86400)return Math.floor(s/3600)+" h";return Math.floor(s/86400)+" j"}
+function hd(n){return"@"+String(n).toLowerCase().replace(/[^a-z0-9]+/g,"")}
+function uid(){return"c"+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function byId(i){return items.filter(function(c){return c.id===i})[0]}
+function loadC(){if(!capi){items=lget(KC,[]);renderC();return}
+  fetch(capi+"/comments",{credentials:"include"}).then(function(r){return r.json()}).then(function(a){items=Array.isArray(a)?a:[];renderC()}).catch(function(){toast("Impossible de charger les commentaires.");renderC()})}
+function post(path,body){return fetch(capi+path,{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}).then(function(r){if(!r.ok)throw 0;return loadC()}).catch(function(){toast("Action impossible pour le moment.")})}
+function item(c,rep){var v=votes[c.id];
+  return'<div class="cm'+(rep?' r':'')+'"><div class="av" style="background:'+col(c.n)+'" aria-hidden="true">'+esc(c.n.charAt(0).toUpperCase())+'</div><div style="min-width:0;flex:1">'+
+  '<div class="bub"><b>'+esc(c.n)+' <span class="u">'+esc(hd(c.n))+'</span></b><span class="tx">'+esc(c.x)+'</span></div>'+
+  '<div class="act"><button type="button" data-a="l" data-i="'+c.id+'" aria-pressed="'+(v==="l")+'" class="'+(v==="l"?"on":"")+'">J’aime'+(c.l?" · "+c.l:"")+'</button>'+
+  '<button type="button" data-a="d" data-i="'+c.id+'" aria-pressed="'+(v==="d")+'" class="'+(v==="d"?"on":"")+'">Je n’aime pas'+(c.d?" · "+c.d:"")+'</button>'+
+  '<button type="button" data-a="r" data-i="'+c.id+'">Répondre</button><span style="font-weight:400">'+ago(c.t)+'</span></div>'+
+  (replyTo===c.id?'<div class="row"><input id="ri" aria-label="Votre réponse à '+esc(c.n)+'" placeholder="Répondre à '+esc(c.n)+'…" maxlength="500" enterkeyhint="send"><button class="send" type="button" data-a="s" data-i="'+c.id+'">Envoyer</button></div>':'')+
+  (rep?'':items.filter(function(x){return x.p===c.id}).sort(function(a,b){return a.t-b.t}).map(function(x){return item(x,true)}).join(''))+'</div></div>'}
+function renderC(){var roots=items.filter(function(c){return !c.p}).sort(function(a,b){return b.t-a.t});
+  $("#cc").textContent=items.length?"("+items.length+")":"";
+  $("#list").innerHTML=roots.length?roots.map(function(c){return item(c,false)}).join(""):'<div class="empty">Aucun commentaire pour l’instant. Soyez le premier à partager votre avis.</div>';
+  var ri=$("#ri");if(ri)ri.focus()}
+function uname(){var n=$("#nm").value.trim();if(!n){$("#nm").focus();toast("Entrez d’abord un nom d’utilisateur.");return null}try{localStorage.setItem(KN,n)}catch(e){}return n}
+function addC(p,n,x){if(capi){post("/comments",{p:p,n:n,x:x});return}
+  items.push({id:uid(),p:p,n:n,x:x,t:Date.now(),l:0,d:0});lset(KC,items);renderC()}
+function sendMain(){var n=uname(),t=$("#tx").value.trim();if(!n||!t)return;addC(null,n,t);$("#tx").value=""}
+$("#post").addEventListener("click",sendMain);
+$("#tx").addEventListener("keydown",function(e){if(e.key==="Enter")sendMain()});
+$("#list").addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target.id==="ri"){var b=$("#list [data-a=s]");if(b)b.click()}});
+$("#list").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var a=b.dataset.a,i=b.dataset.i,c=byId(i);if(!c)return;
+  if(a==="l"||a==="d"){var pv=votes[i],nv=pv===a?null:a;
+    if(capi){if(nv)votes[i]=nv;else delete votes[i];lset(KV,votes);post("/comments/"+encodeURIComponent(i)+"/vote",{vote:nv});return}
+    if(pv)c[pv]=Math.max(0,(c[pv]||0)-1);if(nv){c[nv]=(c[nv]||0)+1;votes[i]=nv}else delete votes[i];lset(KC,items);lset(KV,votes);renderC()}
+  else if(a==="r"){replyTo=replyTo===i?null:i;renderC()}
+  else if(a==="s"){var n=uname(),t=$("#ri").value.trim();if(!n||!t)return;
+    var root=c.p?byId(c.p):c,pre=c.p?hd(c.n)+" ":"";replyTo=null;addC(root.id,n,pre+t)}});
+loadC();
+
+/* Bouton fixe mobile : après le héros, masqué sur l’offre et le CTA final */
+var sb=$("#sticky"),past=false,block=0;
+function upd(){sb.classList.toggle("show",past&&block===0)}
+if("IntersectionObserver" in window){
+  new IntersectionObserver(function(e){past=!e[0].isIntersecting&&e[0].boundingClientRect.top<0;upd()}).observe($("#dl"));
+  var seen={};var io=new IntersectionObserver(function(es){es.forEach(function(x){seen[x.target.id]=x.isIntersecting});block=Object.keys(seen).filter(function(k){return seen[k]}).length;upd()});
+  io.observe($("#offre"));io.observe($("#dlFinal"));
+}
+</script>
+</body>
+</html>

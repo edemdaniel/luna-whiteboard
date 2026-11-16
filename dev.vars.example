@@ -1,0 +1,6 @@
+# Copiez ce fichier en .dev.vars pour le test local. NE le publiez jamais.
+# En production : npx wrangler secret put FEDAPAY_SECRET_KEY (idem pour les autres)
+FEDAPAY_SECRET_KEY=
+FEDAPAY_WEBHOOK_SECRET=
+ALLOWED_ORIGIN=https://votre-site.example
+DOWNLOAD_URL=
